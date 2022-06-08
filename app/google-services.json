@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1031993375605",
+    "project_id": "make-in",
+    "storage_bucket": "make-in.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031993375605:android:3ff22988898ebef721f13c",
+        "android_client_info": {
+          "package_name": "com.lsa.makein"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031993375605-ln6fbvq0af50boms3oclmkch31guf3is.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lsa.makein",
+            "certificate_hash": "8881fdd25c090af0389a1c16daa2b5a47b80e897"
+          }
+        },
+        {
+          "client_id": "1031993375605-ei6eudaprq9ngvbpgde7l2hv4mu1v9he.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkG_bNzbsHlznuIiWmpLgdPIkPIiJUOs4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031993375605-ei6eudaprq9ngvbpgde7l2hv4mu1v9he.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

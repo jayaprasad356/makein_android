@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryColor"
+    tools:context=".SignUpActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/signuptxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:text="Sign Up"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/nametxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/signuptxt"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="60dp"
+            android:text="Name"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nametxt"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/bg1"
+            android:hint="Name"
+            android:maxLength="14"
+            android:padding="10dp"
+            android:textColorHint="@color/white" />
+
+        <TextView
+            android:id="@+id/numbertxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etName"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/mobile_number"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/etMobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/numbertxt"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/bg1"
+            android:textColorHint="@color/white"
+            android:hint="Mobile Number"
+            android:inputType="number"
+            android:maxLength="10"
+            android:padding="10dp" />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Referral Code"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:id="@+id/codetxt"
+            android:layout_below="@id/etMobile"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/etReferral"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/codetxt"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:layout_marginEnd="20dp"
+            android:textColorHint="@color/white"
+            android:background="@drawable/bg1"
+            android:hint="Code"
+            android:padding="10dp" />
+        <LinearLayout
+            android:layout_below="@+id/etReferral"
+            android:id="@+id/l1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Holder Name"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"/>
+
+            <EditText
+                android:id="@+id/etHolderName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:layout_marginEnd="20dp"
+                android:textColorHint="@color/white"
+                android:background="@drawable/bg1"
+                android:hint="Holder Name"
+                android:padding="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account Number"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:id="@+id/etAccountNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:layout_marginEnd="20dp"
+                android:textColorHint="@color/white"
+                android:background="@drawable/bg1"
+                android:hint="Account Number"
+                android:padding="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IFSC Code"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:id="@+id/etIfsc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:layout_marginEnd="20dp"
+                android:textColorHint="@color/white"
+                android:background="@drawable/bg1"
+                android:hint="IFSC Code"
+                android:padding="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bank Name"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:id="@+id/etBankname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:layout_marginEnd="20dp"
+                android:textColorHint="@color/white"
+                android:background="@drawable/bg1"
+                android:hint="Bank Name"
+                android:padding="10dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/signup_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/l1"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/white"
+            android:text="Sign Up"
+            android:textColor="@color/primaryColor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/signup_btn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Already a User,Sign In"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+
+
+
+
+
+
+</ScrollView>
