@@ -74,6 +74,7 @@ public class RechargeActivity extends AppCompatActivity implements PaymentStatus
                     Map<String, String> params = new HashMap<>();
                     params.put(Constant.AMOUNT,etPay.getText().toString().trim());
                     ApiConfig.RequestToVolley((result, response) -> {
+                        Log.d("PAY_RES",response);
                         if (result) {
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
@@ -84,7 +85,6 @@ public class RechargeActivity extends AppCompatActivity implements PaymentStatus
 
                                     }
                                     else if(upi.isChecked()){
-                                        Toast.makeText(activity, UPI_ID, Toast.LENGTH_SHORT).show();
                                         if (!UPI_ID.equals("")){
 
                                             try {
@@ -288,36 +288,30 @@ public class RechargeActivity extends AppCompatActivity implements PaymentStatus
     @Override
     protected void onStart() {
         super.onStart();
-//        Map<String, String> params = new HashMap<>();
-//        ApiConfig.RequestToVolley((result, response) -> {
-//            if (result) {
-//                try {
-//                    JSONObject jsonObject = new JSONObject(response);
-//                    JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
-//                    if (jsonObject.getBoolean(Constant.SUCCESS)) {
-//                        UPI_ID = jsonArray.getJSONObject(0).getString(Constant.UPI_ID);
-//                        RAZORPAY_KEY = jsonArray.getJSONObject(0).getString(Constant.RAZORPAY_KEY);
-//                        RAZORPAY_PAYMENT_METHOD = jsonArray.getJSONObject(0).getString(Constant.RAZORPAY_PAYMENT_METHOD);
-//                        if (RAZORPAY_PAYMENT_METHOD.equals("1") && !RAZORPAY_KEY.equals("")){
-//                            razorpay.setVisibility(View.VISIBLE);
-//
-//                        }
-//
-//                    }
-//                    else {
-//                        Toast.makeText(this, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
-//
-//                    }
-//                } catch (JSONException e){
-//                    e.printStackTrace();
-//                }
-//            }
-//            else {
-//                Toast.makeText(this, String.valueOf(response) +String.valueOf(result), Toast.LENGTH_SHORT).show();
-//
-//            }
-//            //pass url
-//        }, activity, Constant.EARN_SETTINGS_URL, params,true);
+        Map<String, String> params = new HashMap<>();
+        ApiConfig.RequestToVolley((result, response) -> {
+            if (result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
+                    if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                        UPI_ID = jsonArray.getJSONObject(0).getString(Constant.UPI_ID);
+
+                    }
+                    else {
+                        Toast.makeText(this, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+
+                    }
+                } catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+            else {
+                Toast.makeText(this, String.valueOf(response) +String.valueOf(result), Toast.LENGTH_SHORT).show();
+
+            }
+            //pass url
+        }, activity, Constant.EARN_SETTINGS_URL, params,true);
 
     }
 
