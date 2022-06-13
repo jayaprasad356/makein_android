@@ -1,4 +1,4 @@
-package com.lsa.makein;
+package com.mi.makein;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,14 +11,14 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.lsa.makein.fragment.CallUsFragment;
-import com.lsa.makein.fragment.HomeFragment;
-import com.lsa.makein.fragment.ProfileFragment;
-import com.lsa.makein.fragment.ShopFragment;
-import com.lsa.makein.fragment.TeamFragment;
-import com.lsa.makein.helper.ApiConfig;
-import com.lsa.makein.helper.Constant;
-import com.lsa.makein.helper.Session;
+import com.mi.makein.fragment.CallUsFragment;
+import com.mi.makein.fragment.HomeFragment;
+import com.mi.makein.fragment.ProfileFragment;
+import com.mi.makein.fragment.ShopFragment;
+import com.mi.makein.fragment.TeamFragment;
+import com.mi.makein.helper.ApiConfig;
+import com.mi.makein.helper.Constant;
+import com.mi.makein.helper.Session;
 
 
 import org.json.JSONArray;
@@ -158,6 +158,9 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                         session.setData(Constant.BALANCE,jsonArray.getJSONObject(0).getString(Constant.BALANCE));
                         session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
                         session.setData(Constant.SPIN_COUNT,jsonArray.getJSONObject(0).getString(Constant.SPIN_COUNT));
+                        if (jsonArray.getJSONObject(0).getString(Constant.STATUS).equals("0")){
+                            session.logoutUser(activity);
+                        }
 
 
                     }

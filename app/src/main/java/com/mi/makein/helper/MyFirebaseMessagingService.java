@@ -1,4 +1,4 @@
-package com.lsa.makein.helper;
+package com.mi.makein.helper;
 
 
 import android.content.Intent;
@@ -6,8 +6,9 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.lsa.makein.MainActivity;
-import com.lsa.makein.SplashActivity;
+import com.mi.makein.SplashActivity;
+import com.mi.makein.helper.Constant;
+import com.mi.makein.helper.MyNotificationManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;

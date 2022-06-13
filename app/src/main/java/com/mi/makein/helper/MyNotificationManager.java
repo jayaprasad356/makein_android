@@ -1,4 +1,4 @@
-package com.lsa.makein.helper;
+package com.mi.makein.helper;
 
 
 import android.app.Notification;
@@ -19,7 +19,7 @@ import android.text.Html;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
-import com.lsa.makein.R;
+import com.mi.makein.R;
 
 import java.io.IOException;
 import java.io.InputStream;

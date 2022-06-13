@@ -1,4 +1,4 @@
-package com.lsa.makein;
+package com.mi.makein;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,9 +14,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.lsa.makein.helper.ApiConfig;
-import com.lsa.makein.helper.Constant;
-import com.lsa.makein.helper.Session;
+import com.mi.makein.helper.ApiConfig;
+import com.mi.makein.helper.Constant;
+import com.mi.makein.helper.Session;
 
 import org.json.JSONException;
 import org.json.JSONObject;

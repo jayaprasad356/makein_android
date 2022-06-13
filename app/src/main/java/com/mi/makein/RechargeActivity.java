@@ -1,4 +1,4 @@
-package com.lsa.makein;
+package com.mi.makein;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,9 +16,9 @@ import android.widget.Toast;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.slider.Slider;
-import com.lsa.makein.helper.ApiConfig;
-import com.lsa.makein.helper.Constant;
-import com.lsa.makein.helper.Session;
+import com.mi.makein.helper.ApiConfig;
+import com.mi.makein.helper.Constant;
+import com.mi.makein.helper.Session;
 import com.payumoney.core.PayUmoneyConstants;
 import com.payumoney.core.PayUmoneySdkInitializer;
 import com.payumoney.sdkui.ui.utils.PayUmoneyFlowManager;
