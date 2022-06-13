@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "1031993375605",
-    "project_id": "make-in",
-    "storage_bucket": "make-in.appspot.com"
+    "project_number": "93782317678",
+    "project_id": "make-in-a0384",
+    "storage_bucket": "make-in-a0384.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1031993375605:android:3ff22988898ebef721f13c",
+        "mobilesdk_app_id": "1:93782317678:android:960bf08757774bd1ad647f",
         "android_client_info": {
-          "package_name": "com.lsa.makein"
+          "package_name": "com.mi.makein"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1031993375605-ln6fbvq0af50boms3oclmkch31guf3is.apps.googleusercontent.com",
+          "client_id": "93782317678-1isa02ci1aeh2c4554nn6mqasm2idmsf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.lsa.makein",
+            "package_name": "com.mi.makein",
             "certificate_hash": "8881fdd25c090af0389a1c16daa2b5a47b80e897"
           }
         },
         {
-          "client_id": "1031993375605-ei6eudaprq9ngvbpgde7l2hv4mu1v9he.apps.googleusercontent.com",
+          "client_id": "93782317678-7rl6qt9dqtbe0fd59lq1ookp96k3sv5q.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBkG_bNzbsHlznuIiWmpLgdPIkPIiJUOs4"
+          "current_key": "AIzaSyCEuXoNJvF5A43vadYNZ68V3bsqyBzSd7E"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1031993375605-ei6eudaprq9ngvbpgde7l2hv4mu1v9he.apps.googleusercontent.com",
+              "client_id": "93782317678-7rl6qt9dqtbe0fd59lq1ookp96k3sv5q.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

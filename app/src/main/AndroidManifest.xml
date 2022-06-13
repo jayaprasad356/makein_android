@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.lsa.makein">
+    package="com.mi.makein">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -48,7 +48,7 @@
         tools:ignore="ProtectedPermissions" />
 
     <application
-        android:name=".helper.ApiConfig"
+        android:name="com.mi.makein.helper.ApiConfig"
         android:allowBackup="false"
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@drawable/makein"
@@ -60,31 +60,31 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:usesCleartextTraffic">
         <activity
-            android:name=".AccountDetailsActivity"
+            android:name="com.mi.makein.AccountDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".SpinWheelActivity"
+            android:name="com.mi.makein.SpinWheelActivity"
             android:exported="false" />
         <activity
-            android:name=".TestActivity"
+            android:name="com.mi.makein.TestActivity"
             android:exported="false" />
         <activity
-            android:name=".FaqActivity"
+            android:name="com.mi.makein.FaqActivity"
             android:exported="false" />
         <activity
-            android:name=".AboutUsActivity"
+            android:name="com.mi.makein.AboutUsActivity"
             android:exported="false" />
         <activity
-            android:name=".ReferEarnActivity"
+            android:name="com.mi.makein.ReferEarnActivity"
             android:exported="false" />
         <activity
-            android:name=".WithdrawalListActivity"
+            android:name="com.mi.makein.WithdrawalListActivity"
             android:exported="false" />
         <activity
-            android:name=".PayUMoneyActivity"
+            android:name="com.mi.makein.PayUMoneyActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name="com.mi.makein.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -93,40 +93,40 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BonusActivity"
+            android:name="com.mi.makein.BonusActivity"
             android:exported="false" />
         <activity
-            android:name=".MinorActivity"
+            android:name="com.mi.makein.MinorActivity"
             android:exported="false" />
         <activity
-            android:name=".WithdrawalActivity"
+            android:name="com.mi.makein.WithdrawalActivity"
             android:exported="false" />
         <activity
-            android:name=".RechargeActivity"
+            android:name="com.mi.makein.RechargeActivity"
             android:exported="false" />
         <activity
-            android:name=".Recharge_History_Activity"
+            android:name="com.mi.makein.Recharge_History_Activity"
             android:exported="false" />
         <activity
-            android:name=".UPI_Information_Activity"
+            android:name="com.mi.makein.UPI_Information_Activity"
             android:exported="false" />
         <activity
-            android:name=".TransactionDetailsActivity"
+            android:name="com.mi.makein.TransactionDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name="com.mi.makein.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".OtpActivity"
+            android:name="com.mi.makein.OtpActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.mi.makein.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.mi.makein.MainActivity"
             android:exported="true" />
         <service
-            android:name=".helper.MyFirebaseMessagingService"
+            android:name="com.mi.makein.helper.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
