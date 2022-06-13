@@ -92,11 +92,11 @@
         <ImageView
             android:id="@+id/whatsapp_join"
             android:layout_width="220dp"
-            android:layout_height="@dimen/dimen_80dp"
+            android:layout_height="60dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/dimen_30dp"
-            android:src="@drawable/whatsppjoin" />
+            android:src="@drawable/wc" />
 
 
     </RelativeLayout>

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.lsa.makein.fragment.CallUsFragment;
 import com.lsa.makein.fragment.HomeFragment;
 import com.lsa.makein.fragment.ProfileFragment;
@@ -52,8 +53,33 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         bottomNavigationView.setOnItemSelectedListener(this);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment,"HOME").commit();
 
+        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(token -> {
+            session.setData(Constant.FCM_ID, token);
+            Log.d(Constant.FCM_ID,token);
+            Register_FCM(token);
+        });
 
 
+
+    }
+    public void Register_FCM(String token) {
+        Map<String, String> params = new HashMap<>();
+        params.put(Constant.USER_ID, session.getData(Constant.ID));
+        params.put(Constant.FCM_ID, token);
+
+        ApiConfig.RequestToVolley((result, response) -> {
+            if (result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                        session.setData(Constant.FCM_ID, token);
+                    }
+                } catch (JSONException ignored) {
+
+                }
+
+            }
+        }, activity, Constant.UPDATE_FCM, params, false);
     }
 
     @Override

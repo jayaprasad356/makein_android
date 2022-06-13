@@ -56,6 +56,7 @@ public class Constant {
     public static final String DAILY_INCOME = "daily_income";
     public static final String VALID = "valid";
     public static final String AMOUNT = "amount";
+    public static final String ACT_AMOUNT = "act_amount";
     public static final String EMAIL = "email";
     public static final String MOBILE = "mobile";
     public static final String REFERRAL = "referral";
@@ -65,6 +66,8 @@ public class Constant {
     public static final String IFSC_CODE = "ifsc_code";
     public static final String BANK_NAME = "bank_name";
     public static final String TYPE = "type";
+    public static final String FCM_ID = "fcm_id";
+    public static final String UPDATE_FCM = BaseUrl + "update_fcm.php";
     public static final String NAME = "name";
  public static final String PAYMENT = "payment";
     public static String PAYUMONEY = "";

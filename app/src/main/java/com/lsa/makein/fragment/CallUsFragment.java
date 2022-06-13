@@ -56,7 +56,7 @@ public class CallUsFragment extends Fragment {
         whatsapp_join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "https://api.whatsapp.com/send?phone=+12294660536";
+                String url = "https://api.whatsapp.com/send?phone=+917694995014";
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
                 startActivity(i);
