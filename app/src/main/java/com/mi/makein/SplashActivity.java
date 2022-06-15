@@ -55,6 +55,7 @@ public class SplashActivity extends AppCompatActivity {
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
                         JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
                         sharelink = jsonArray.getJSONObject(0).getString(Constant.SHARE_LINK);
+                        session.setData(Constant.SHARE_LINK,sharelink);
                         String latestversion = jsonArray.getJSONObject(0).getString(Constant.VERSION);
                         String currentversion = String.valueOf(BuildConfig.VERSION_CODE);
                         Log.d("SPLASH_RES","lat "+latestversion + "curent"+currentversion);
@@ -74,7 +75,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
             }
 
-        }, activity, Constant.EARN_SETTINGS_URL, params,true);
+        }, activity, Constant.EARN_SETTINGS_URL, params,false);
 
     }
 

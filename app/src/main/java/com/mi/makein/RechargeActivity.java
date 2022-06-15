@@ -74,7 +74,6 @@ public class RechargeActivity extends AppCompatActivity implements PaymentStatus
                     Map<String, String> params = new HashMap<>();
                     params.put(Constant.AMOUNT,etPay.getText().toString().trim());
                     ApiConfig.RequestToVolley((result, response) -> {
-                        Log.d("PAY_RES",response);
                         if (result) {
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
@@ -172,61 +171,6 @@ public class RechargeActivity extends AppCompatActivity implements PaymentStatus
 
 
 
-    private void launchPayUMoneyFlow(double amount) {
-        PayUmoneySdkInitializer.PaymentParam.Builder builder = new PayUmoneySdkInitializer.PaymentParam.Builder();
-
-        String txnId = "0nf7" + System.currentTimeMillis();
-        // String txnId = "TXNID720431525261327973";
-        String phone = "7777777777";
-        String productName = "Sample Product";
-        String firstName = "loopwiki";
-        String email = "sample@sample.com";
-        String udf1 = "";
-        String udf2 = "";
-        String udf3 = "";
-        String udf4 = "";
-        String udf5 = "";
-
-        //AppEnvironment appEnvironment = ((BaseApplication) getApplication()).getAppEnvironment();
-        builder.setAmount(String.valueOf(amount))
-                .setTxnId(txnId)
-                .setPhone(phone)
-                .setProductName(productName)
-                .setFirstName(firstName)
-                .setEmail(email)
-                .setsUrl(getString(R.string.sUrl))
-                .setfUrl(getString(R.string.fUrl))
-                .setUdf1(udf1)
-                .setUdf2(udf2)
-                .setUdf3(udf3)
-                .setUdf4(udf4)
-                .setUdf5(udf5)
-                .setIsDebug(false)
-                .setKey(getString(R.string.MerchantKey))
-                .setMerchantId(getString(R.string.MerchantId));
-
-        try {
-            PayUmoneySdkInitializer.PaymentParam mPaymentParams = builder.build();
-
-            /*
-             * Hash should always be generated from your server side.
-             * */
-            //    generateHashFromServer(mPaymentParams);
-
-            /*            *//**
-             * Do not use below code when going live
-             * Below code is provided to generate hash from sdk.
-             * It is recommended to generate hash from server side only.
-             * */
-            mPaymentParams = calculateServerSideHashAndInitiatePayment1(mPaymentParams);
-
-            PayUmoneyFlowManager.startPayUMoneyFlow(mPaymentParams, RechargeActivity.this, R.style.AppTheme, false);
-
-        } catch (Exception e) {
-            // some exception occurred
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
     // Method to create hash
     public static String hashCal(String str) {
         byte[] hashseq = str.getBytes();
@@ -296,6 +240,12 @@ public class RechargeActivity extends AppCompatActivity implements PaymentStatus
                     JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
                         UPI_ID = jsonArray.getJSONObject(0).getString(Constant.UPI_ID);
+                        RAZORPAY_KEY = jsonArray.getJSONObject(0).getString(Constant.RAZORPAY_KEY);
+                        RAZORPAY_PAYMENT_METHOD = jsonArray.getJSONObject(0).getString(Constant.RAZORPAY_PAYMENT_METHOD);
+                        if (RAZORPAY_PAYMENT_METHOD.equals("1") && !RAZORPAY_KEY.equals("")){
+                            razorpay.setVisibility(View.VISIBLE);
+
+                        }
 
                     }
                     else {
@@ -330,7 +280,6 @@ public class RechargeActivity extends AppCompatActivity implements PaymentStatus
         params.put(Constant.AMOUNT,etPay.getText().toString());
         params.put(Constant.TYPE,type);
         ApiConfig.RequestToVolley((result, response) -> {
-            Log.d("UPI_RESPONSE",response);
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);

@@ -26,6 +26,7 @@ public class Constant {
     public static final String UPDATE_ACCOUNT_URL = BaseUrl + "update_account.php";
     public static final String ID = "id";
     public static final String BALANCE = "balance";
+    public static final String TERMS = "terms";
     public static final String VERSION = "version";
     public static final String SHARE_LINK = "share_link";
     public static final String SPIN1 = "spin_text_1";

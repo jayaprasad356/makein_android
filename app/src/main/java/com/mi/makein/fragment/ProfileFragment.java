@@ -19,6 +19,7 @@ import com.mi.makein.FaqActivity;
 import com.mi.makein.MinorActivity;
 import com.mi.makein.R;
 import com.mi.makein.Recharge_History_Activity;
+import com.mi.makein.TermsConditionsActivity;
 import com.mi.makein.WithdrawalListActivity;
 import com.mi.makein.helper.ApiConfig;
 import com.mi.makein.helper.Constant;
@@ -33,7 +34,7 @@ import java.util.Map;
 
 public class ProfileFragment extends Fragment {
 
-    RelativeLayout relayout_1,withdrawal_layout,miner_layout,recharge_layout,relayout_2,share_re;
+    RelativeLayout relayout_1,withdrawal_layout,miner_layout,recharge_layout,relayout_2,share_re,term_re;
     Session session;
     TextView nadila_txt,tvBalance;
     TextView tvPurchasedPlans,tvTodayProfit,tvTotalProfit,tvTodayProfit2;
@@ -58,6 +59,7 @@ public class ProfileFragment extends Fragment {
         share_re = rootview.findViewById(R.id.share_re);
         tvBalance = rootview.findViewById(R.id.tvBalance);
         logout = rootview.findViewById(R.id.logout);
+        term_re = rootview.findViewById(R.id.terms_re);
         activity = getActivity();
         session = new Session(getActivity());
 
@@ -97,6 +99,14 @@ public class ProfileFragment extends Fragment {
 
             }
         });
+        term_re.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), TermsConditionsActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         relayout_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +131,7 @@ public class ProfileFragment extends Fragment {
                     shareIntent.setType("text/plain");
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name);
                     String shareMessage= "\nLet me recommend you this application\n\n";
-                    shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+                    shareMessage = shareMessage + session.getData(Constant.SHARE_LINK) +"\n";
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
                     startActivity(Intent.createChooser(shareIntent, "choose one"));
                 } catch(Exception e) {

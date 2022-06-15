@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mi.makein.BonusActivity;
+import com.mi.makein.MinorActivity;
 import com.mi.makein.R;
 import com.mi.makein.RechargeActivity;
 import com.mi.makein.SpinWheelActivity;
@@ -68,7 +69,7 @@ public class HomeFragment extends Fragment {
         activity_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), BonusActivity.class);
+                Intent intent = new Intent(getActivity(), MinorActivity.class);
                 startActivity(intent);
             }
         });

@@ -73,12 +73,10 @@ public class BonusActivity extends AppCompatActivity {
                         recyclerView.setAdapter(bonusAdapter);
                     }
                     else {
-                        Log.d("TEAM_RESPONSE",""+jsonObject.getString(Constant.MESSAGE));
                     }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Log.d("TEAM_RESPONSE",""+e.getMessage());
                 }
             }
         }, activity, Constant.BONUS_LIST_URL, params, true);
