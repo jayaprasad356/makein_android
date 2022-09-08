@@ -1,5 +1,6 @@
 package com.mi.makein.helper;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
@@ -106,6 +107,10 @@ public class ApiConfig extends Application {
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(0, 0, 0));
         ApiConfig.getInstance().getRequestQueue().getCache().clear();
         ApiConfig.getInstance().addToRequestQueue(stringRequest);
+    }
+    @SuppressLint("DefaultLocale")
+    public static String StringFormat(String number) {
+        return String.format("%.2f", Double.parseDouble(number));
     }
     public static String createJWT(String issuer, String subject) {
         try {

@@ -24,6 +24,9 @@ public class Constant {
     public static final String LEVEL_PERCENTAGE_LIST_URL = BaseUrl + "level_percentage_list.php";
     public static final String PURCHASED_PLANS_URL = BaseUrl + "purchased_plans.php";
     public static final String UPDATE_ACCOUNT_URL = BaseUrl + "update_account.php";
+    public static final String ORDERID = "ORDERID";
+    public static final String STATUS_ = "STATUS";
+    public static final String TXN_SUCCESS = "TXN_SUCCESS";
     public static final String ID = "id";
     public static final String BALANCE = "balance";
     public static final String TERMS = "terms";
@@ -85,7 +88,10 @@ public class Constant {
     public static final String DATA = "data";
     public static final String UPI_ID = "upi_id";
     public static final String RAZORPAY_KEY = "razorpay_key";
+    public static final String PAYTM_MERCHANT_ID = "paytm_merchant_id";
     public static final String RAZORPAY_PAYMENT_METHOD = "razorpay_payment_method";
+    public static final String PAYTM_PAYMENT_METHOD = "paytm_payment_method";
+    public static final String PAYTM_MODE = "paytm_mode";
     public static final String UPLOAD_PROFILE = "upload_profile";
     public static final String AUTHORIZATION = "Authorization";
     public static final String AccessKey = "accesskey";
@@ -101,4 +107,34 @@ public class Constant {
     public static final String LEVEL_1 = "level_1";
     public static final String LEVEL_2 = "level_2";
     public static final String LEVEL_3 = "level_3";
+
+    //    public static final String PAYTM_ORDER_PROCESS_LIVE_URL = "https://securegw.paytm.in/order/process";
+    public static final String CUST_ID = "CUST_ID";
+    public static final String INDUSTRY_TYPE_ID_LIVE_VAL = "Retail";
+    public static final String MOBILE_APP_CHANNEL_ID_LIVE_VAL = "WAP";
+    public static final String WEBSITE_LIVE_VAL = "WEB";
+    public static final String WEBSITE_DEMO_VAL = "WEBSTAGING";
+    public static final String INDUSTRY_TYPE_ID_DEMO_VAL = "Retail";
+    public static final String MOBILE_APP_CHANNEL_ID_DEMO_VAL = "WAP";
+    public static final String PAYTM_ORDER_PROCESS_DEMO_VAL = "https://securegw-stage.paytm.in/order/process";
+    public static final String GENERATE_PAYTM_CHECKSUM = MainBaseUrl + "paytm/generate-checksum.php";
+    public static final String VALID_TRANSACTION = MainBaseUrl + "/paytm/valid-transction.php";
+    public static final String CALLBACK_URL = "CALLBACK_URL";
+    public static final String CHECKSUMHASH = "CHECKSUMHASH";
+    public static final String ORDER_ID_ = "ORDER_ID";
+    public static final String CHANNEL_ID = "CHANNEL_ID";
+    public static final String INDUSTRY_TYPE_ID = "INDUSTRY_TYPE_ID";
+    public static final String WEBSITE = "WEBSITE";
+    public static final String TXN_AMOUNT = "TXN_AMOUNT";
+    public static final String MID = "MID";
+    public static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghjiklmnopqrstuvwxyz";
+    public static String randomAlphaNumeric(int count) {
+        StringBuilder builder = new StringBuilder();
+        while (count-- != 0) {
+            int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
+            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+        }
+        return builder.toString();
+    }
+
 }

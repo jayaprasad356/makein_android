@@ -1,9 +1,7 @@
 package com.mi.makein;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,13 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.chip.Chip;
-import com.google.android.material.slider.Slider;
 import com.mi.makein.helper.ApiConfig;
 import com.mi.makein.helper.Constant;
 import com.mi.makein.helper.Session;
+import com.paytm.pgsdk.PaytmOrder;
+import com.paytm.pgsdk.PaytmPGService;
+import com.paytm.pgsdk.PaytmPaymentTransactionCallback;
 import com.payumoney.core.PayUmoneyConstants;
 import com.payumoney.core.PayUmoneySdkInitializer;
-import com.payumoney.sdkui.ui.utils.PayUmoneyFlowManager;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 import com.shreyaspatil.EasyUpiPayment.EasyUpiPayment;
@@ -35,23 +34,29 @@ import org.json.JSONObject;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
-public class RechargeActivity extends AppCompatActivity implements PaymentStatusListener, PaymentResultListener {
+public class RechargeActivity extends AppCompatActivity implements PaytmPaymentTransactionCallback,PaymentStatusListener, PaymentResultListener {
     EditText etPay;
     Button paybtn;
     int amt;
     Activity activity;
     Session session;
-    Chip razorpay,upi;
+    Chip razorpay,upi,paytm;
     TextView tvBalance;
     String UPI_ID = "";
     String RAZORPAY_KEY = "";
+    String PAYTM_MERCHANT_ID = "";
     String RAZORPAY_PAYMENT_METHOD = "";
+    String PAYTM_PAYMENT_METHOD = "";
+    String PAYTM_MODE = "";
+    public static String customerId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +65,7 @@ public class RechargeActivity extends AppCompatActivity implements PaymentStatus
         etPay = findViewById(R.id.etPay);
         paybtn = findViewById(R.id.paybtn);
         razorpay = findViewById(R.id.razorpay);
+        paytm = findViewById(R.id.paytm);
         upi = findViewById(R.id.upi);
         tvBalance = findViewById(R.id.tvBalance);
         activity = RechargeActivity.this;
@@ -102,6 +108,10 @@ public class RechargeActivity extends AppCompatActivity implements PaymentStatus
 
 
                                     }
+                                    else if (paytm.isChecked()){
+                                        startPayTmPayment();
+
+                                    }
 
                                 }
                                 else {
@@ -125,6 +135,79 @@ public class RechargeActivity extends AppCompatActivity implements PaymentStatus
             }
         });
     }
+    public void startPayTmPayment() {
+        Map<String, String> params = new HashMap<>();
+
+        params.put(Constant.ORDER_ID_, Constant.randomAlphaNumeric(20));
+        params.put(Constant.CUST_ID, Constant.randomAlphaNumeric(10));
+        params.put(Constant.TXN_AMOUNT, ApiConfig.StringFormat("" + Double.parseDouble(etPay.getText().toString().trim())));
+        if (PAYTM_MODE.equals("sandbox")) {
+            params.put(Constant.INDUSTRY_TYPE_ID, Constant.INDUSTRY_TYPE_ID_DEMO_VAL);
+            params.put(Constant.CHANNEL_ID, Constant.MOBILE_APP_CHANNEL_ID_DEMO_VAL);
+            params.put(Constant.WEBSITE, Constant.WEBSITE_DEMO_VAL);
+        } else if (PAYTM_MODE.equals("production")) {
+            params.put(Constant.INDUSTRY_TYPE_ID, Constant.INDUSTRY_TYPE_ID_LIVE_VAL);
+            params.put(Constant.CHANNEL_ID, Constant.MOBILE_APP_CHANNEL_ID_LIVE_VAL);
+            params.put(Constant.WEBSITE, Constant.WEBSITE_LIVE_VAL);
+        }
+
+//        System.out.println("====" + params.toString());
+        ApiConfig.RequestToVolley((result, response) -> {
+            if (result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONObject object = jsonObject.getJSONObject(Constant.DATA);
+//                    System.out.println("=======res  " + response);
+
+                    PaytmPGService Service = null;
+                    if (PAYTM_MODE.equals("sandbox")) {
+                        Service = PaytmPGService.getStagingService(Constant.PAYTM_ORDER_PROCESS_DEMO_VAL);
+                    } else if (PAYTM_MODE.equals("production")) {
+                        Service = PaytmPGService.getProductionService();
+                    }
+
+                    customerId = object.getString(Constant.CUST_ID);
+                    //creating a hashmap and adding all the values required
+
+                    HashMap<String, String> paramMap = new HashMap<>();
+                    paramMap.put(Constant.MID, PAYTM_MERCHANT_ID);
+                    paramMap.put(Constant.ORDER_ID_, jsonObject.getString("order id"));
+                    paramMap.put(Constant.CUST_ID, object.getString(Constant.CUST_ID));
+                    paramMap.put(Constant.TXN_AMOUNT, ApiConfig.StringFormat("" + Double.parseDouble(etPay.getText().toString().trim())));
+
+                    if (PAYTM_MODE.equals("sandbox")) {
+                        paramMap.put(Constant.INDUSTRY_TYPE_ID, Constant.INDUSTRY_TYPE_ID_DEMO_VAL);
+                        paramMap.put(Constant.CHANNEL_ID, Constant.MOBILE_APP_CHANNEL_ID_DEMO_VAL);
+                        paramMap.put(Constant.WEBSITE, Constant.WEBSITE_DEMO_VAL);
+                    } else if (PAYTM_MODE.equals("production")) {
+                        paramMap.put(Constant.INDUSTRY_TYPE_ID, Constant.INDUSTRY_TYPE_ID_LIVE_VAL);
+                        paramMap.put(Constant.CHANNEL_ID, Constant.MOBILE_APP_CHANNEL_ID_LIVE_VAL);
+                        paramMap.put(Constant.WEBSITE, Constant.WEBSITE_LIVE_VAL);
+                    }
+
+                    paramMap.put(Constant.CALLBACK_URL, object.getString(Constant.CALLBACK_URL));
+                    paramMap.put(Constant.CHECKSUMHASH, jsonObject.getString("signature"));
+                    Log.d("PAY_HASH", Arrays.asList(paramMap) + "");
+
+                    //creating a paytm order object using the hashmap
+                    PaytmOrder order = new PaytmOrder(paramMap);
+
+                    //intializing the paytm service
+                    Objects.requireNonNull(Service).initialize(order, null);
+
+                    //finally starting the payment transaction
+                    Service.startPaymentTransaction(activity, true, true, this);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, activity, Constant.GENERATE_PAYTM_CHECKSUM, params, false);
+
+
+
+    }
+
 
     private void launchRayzorpay() {
 
@@ -241,9 +324,16 @@ public class RechargeActivity extends AppCompatActivity implements PaymentStatus
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
                         UPI_ID = jsonArray.getJSONObject(0).getString(Constant.UPI_ID);
                         RAZORPAY_KEY = jsonArray.getJSONObject(0).getString(Constant.RAZORPAY_KEY);
+                        PAYTM_MERCHANT_ID = jsonArray.getJSONObject(0).getString(Constant.PAYTM_MERCHANT_ID);
                         RAZORPAY_PAYMENT_METHOD = jsonArray.getJSONObject(0).getString(Constant.RAZORPAY_PAYMENT_METHOD);
+                        PAYTM_PAYMENT_METHOD = jsonArray.getJSONObject(0).getString(Constant.PAYTM_PAYMENT_METHOD);
+                        PAYTM_MODE = jsonArray.getJSONObject(0).getString(Constant.PAYTM_MODE);
                         if (RAZORPAY_PAYMENT_METHOD.equals("1") && !RAZORPAY_KEY.equals("")){
                             razorpay.setVisibility(View.VISIBLE);
+
+                        }
+                        if (PAYTM_PAYMENT_METHOD.equals("1") && !PAYTM_MERCHANT_ID.equals("")){
+                            paytm.setVisibility(View.VISIBLE);
 
                         }
 
@@ -270,6 +360,10 @@ public class RechargeActivity extends AppCompatActivity implements PaymentStatus
         String type = "";
         if (razorpay.isChecked()){
             type = "razorpay";
+
+        }
+        else if (paytm.isChecked()){
+            type = "paytm";
 
         }
         else {
@@ -368,4 +462,67 @@ public class RechargeActivity extends AppCompatActivity implements PaymentStatus
         // status listener method to call other payment methods.
         easyUpiPayment.setPaymentStatusListener(this);
     }
+
+    @Override
+    public void onTransactionResponse(Bundle bundle) {
+        String orderId = bundle.getString(Constant.ORDERID);
+        String status = bundle.getString(Constant.STATUS_);
+        if (status.equalsIgnoreCase(Constant.TXN_SUCCESS)) {
+            verifyTransaction(orderId);
+        } else {
+            Toast.makeText(activity, "Transaction Failed", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    public void networkNotAvailable() {
+
+    }
+
+    @Override
+    public void clientAuthenticationFailed(String inErrorMessage) {
+
+    }
+
+    @Override
+    public void someUIErrorOccurred(String inErrorMessage) {
+
+    }
+
+    @Override
+    public void onErrorLoadingWebPage(int iniErrorCode, String inErrorMessage, String inFailingUrl) {
+
+    }
+
+    @Override
+    public void onBackPressedCancelTransaction() {
+
+    }
+
+    @Override
+    public void onTransactionCancel(String inErrorMessage, Bundle inResponse) {
+
+    }
+    public void verifyTransaction(String orderId) {
+        Map<String, String> params = new HashMap<>();
+        params.put("orderId", orderId);
+        ApiConfig.RequestToVolley((result, response) -> {
+            if (result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String status = jsonObject.getJSONObject("body").getJSONObject("resultInfo").getString("resultStatus");
+                    if (status.equalsIgnoreCase("TXN_SUCCESS")) {
+                        String txnId = jsonObject.getJSONObject("body").getString("txnId");
+                        rechargeAmount();
+                        //PlaceOrder(activity, getString(R.string.paytm), txnId, true, sendParams, Constant.SUCCESS);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+            }
+        }, activity, Constant.VALID_TRANSACTION, params, false);
+    }
+
 }

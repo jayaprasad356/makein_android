@@ -76,6 +76,20 @@
 
                 app:chipBackgroundColor="@color/bg_chip_state_list"
                 />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/paytm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:clickable="true"
+                android:textAlignment="center"
+                app:checkedIconEnabled="false"
+                app:checkedIcon="@null"
+                android:text="Paytm"
+                android:visibility="gone"
+                android:focusable="true"
+                app:chipBackgroundColor="@color/bg_chip_state_list"
+                />
 
         </com.google.android.material.chip.ChipGroup>
 
